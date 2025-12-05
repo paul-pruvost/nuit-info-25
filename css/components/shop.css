@@ -1,0 +1,123 @@
+/**
+ * Shop/Upgrades Styles
+ * NIRD Clicker Game
+ */
+
+.shop-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shop-title span {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.upgrade {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(19, 24, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.upgrade-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: radial-gradient(circle at 30% 20%, #37474f 0, #101921 70%);
+}
+
+.upgrade-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.upgrade-name-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.upgrade-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.upgrade-count {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.upgrade-desc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.upgrade-meta {
+  margin-top: 3px;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.upgrade-meta span + span::before {
+  content: "•";
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+.upgrade button {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #4caf50;
+  color: #050709;
+  transition:
+    background 0.12s ease-out,
+    transform 0.06s ease-out,
+    filter 0.08s ease-out;
+  white-space: nowrap;
+}
+
+.upgrade button:disabled {
+  background: #455a64;
+  color: #cfd8dc;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  filter: none;
+}
+
+.upgrade button:not(:disabled):hover {
+  filter: brightness(1.05);
+}
+
+.upgrade button:not(:disabled):active {
+  transform: scale(0.95);
+}

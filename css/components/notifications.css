@@ -1,0 +1,86 @@
+/**
+ * Notifications & Toast Styles
+ * NIRD Clicker Game
+ */
+
+#notification-container {
+  position: fixed;
+  bottom: 100px; /* Au-dessus du footer NIRD */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  z-index: 999; /* En dessous du footer mais au-dessus du contenu */
+  pointer-events: none;
+}
+
+.notification {
+  background: rgba(16, 42, 24, 0.95);
+  border: 1px solid rgba(126, 231, 135, 0.5);
+  color: #7ee787;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.error {
+  background: rgba(42, 16, 16, 0.95);
+  border-color: rgba(231, 126, 126, 0.5);
+  color: #e77e7e;
+}
+
+.notification.success {
+  background: rgba(16, 42, 24, 0.95);
+  border-color: rgba(126, 231, 135, 0.5);
+  color: #7ee787;
+}
+
+/* Boost Indicator */
+.boost-indicator {
+  display: none;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: rgba(251, 191, 36, 0.2);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: boostPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes boostPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Responsive - ajuster la position sur mobile */
+@media (max-width: 800px) {
+  #notification-container {
+    bottom: 140px;
+  }
+}
+
+@media (max-width: 500px) {
+  #notification-container {
+    bottom: 150px;
+  }
+  
+  .notification {
+    font-size: 0.8rem;
+    padding: 10px 16px;
+  }
+}

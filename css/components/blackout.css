@@ -1,0 +1,125 @@
+/**
+ * Blackout Event Styles
+ * NIRD Clicker Game
+ */
+
+/* Overlay sombre avec effet de lampe torche */
+#blackout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#blackout-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Routeur à trouver */
+.router-target {
+  position: fixed;
+  cursor: pointer;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.2s ease;
+  pointer-events: auto;
+}
+
+.router-target img {
+  width: 90px;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: filter 0.3s ease;
+}
+
+.router-target.glowing img {
+  filter: drop-shadow(0 0 8px rgba(126, 231, 135, 0.8))
+          drop-shadow(0 0 15px rgba(126, 231, 135, 0.6))
+          drop-shadow(0 0 25px rgba(126, 231, 135, 0.4));
+}
+
+.router-target:hover {
+  transform: scale(1.3);
+}
+
+/* Quand le routeur est visible (opacity > 0.5), ajouter l'effet de glow */
+@keyframes routerGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 10px rgba(126, 231, 135, 0.5));
+  }
+  50% { 
+    filter: drop-shadow(0 0 20px rgba(126, 231, 135, 1));
+  }
+}
+
+/* Message de panne */
+.blackout-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  z-index: 10001;
+  text-align: center;
+  animation: messageFlicker 2s ease-in-out infinite;
+}
+
+@keyframes messageFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Animation d'apparition du routeur */
+.router-target.found {
+  animation: routerFound 0.5s ease-out forwards;
+}
+
+@keyframes routerFound {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Effet de rallumage */
+#blackout-overlay.restoring {
+  animation: lightsOn 0.8s ease-out forwards;
+}
+
+@keyframes lightsOn {
+  0% { 
+    background: radial-gradient(
+      circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      transparent 0%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+  }
+  100% { 
+    background: radial-gradient(
+      circle 2000px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      transparent 0%,
+      transparent 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 0;
+  }
+}

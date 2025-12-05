@@ -1,0 +1,44 @@
+/**
+ * Main Click Button Styles
+ * NIRD Clicker Game
+ */
+
+.big-button {
+  margin-top: 12px;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  padding: 0;
+  background: transparent;
+  transition: transform 0.08s ease-out, filter 0.08s ease-out;
+}
+
+.big-button:active {
+  transform: scale(0.92);
+}
+
+.big-button:hover {
+  filter: brightness(1.1);
+}
+
+/* Level-based button styles - effets visuels sur l'image */
+.big-button[data-level="8"] {
+  animation: goldenPulse 2s ease-in-out infinite;
+}
+
+.big-button[data-level="8"] .computer-image {
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+}
+
+.big-button[data-level="8"] .computer-label { 
+  color: #ffd700; 
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes goldenPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.8); }
+  50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6), 0 12px 40px rgba(0, 0, 0, 0.8); }
+}

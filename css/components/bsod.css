@@ -1,0 +1,241 @@
+/**
+ * Blue Screen Wordle Event Styles
+ * NIRD Clicker Game
+ */
+
+/* Overlay Blue Screen - prend toute la fenêtre */
+#bsod-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0078d7;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+#bsod-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Contenu BSOD */
+.bsod-content {
+  color: white;
+  font-family: 'Segoe UI', 'Consolas', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bsod-sad {
+  font-size: clamp(40px, 10vh, 80px);
+  margin-bottom: 1vh;
+}
+
+.bsod-text {
+  font-size: clamp(11px, 2vh, 16px);
+  line-height: 1.4;
+  margin-bottom: 2vh;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.bsod-word-placeholder {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+/* Zone de jeu Wordle */
+.wordle-container {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 2vh 20px;
+}
+
+.wordle-title {
+  font-size: clamp(1rem, 2.5vh, 1.3rem);
+  margin-bottom: 0.5vh;
+  text-align: center;
+}
+
+.wordle-hint {
+  font-size: clamp(0.85rem, 2vh, 1.1rem);
+  opacity: 0.8;
+  margin-bottom: 1.5vh;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Grille des essais */
+.wordle-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6vh;
+  margin-bottom: 1.5vh;
+  align-items: center;
+}
+
+.wordle-row {
+  display: flex;
+  gap: 6px;
+}
+
+.wordle-cell {
+  width: clamp(32px, 7vh, 50px);
+  height: clamp(32px, 7vh, 50px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 3.5vh, 1.5rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  background: transparent;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.wordle-cell.filled {
+  border-color: white;
+}
+
+.wordle-cell.correct {
+  background: #538d4e;
+  border-color: #538d4e;
+  animation: flip 0.4s ease;
+}
+
+.wordle-cell.present {
+  background: #b59f3b;
+  border-color: #b59f3b;
+  animation: flip 0.4s ease;
+}
+
+.wordle-cell.absent {
+  background: #3a3a3c;
+  border-color: #3a3a3c;
+  animation: flip 0.4s ease;
+}
+
+@keyframes flip {
+  0% { transform: rotateX(0); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+/* Clavier virtuel */
+.wordle-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6vh;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 4px;
+}
+
+.key {
+  min-width: clamp(24px, 4vw, 36px);
+  height: clamp(30px, 5vh, 44px);
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-size: clamp(0.75rem, 2vh, 1rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0 6px;
+}
+
+.key:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.key.wide {
+  min-width: clamp(45px, 8vw, 70px);
+  font-size: clamp(0.65rem, 1.8vh, 0.9rem);
+}
+
+.key.correct {
+  background: #538d4e;
+  color: white;
+}
+
+.key.present {
+  background: #b59f3b;
+  color: white;
+}
+
+.key.absent {
+  background: #3a3a3c;
+  color: white;
+}
+
+/* Message de résultat */
+.wordle-result {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+}
+
+.wordle-result.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.wordle-result.win {
+  background: rgba(83, 141, 78, 0.5);
+}
+
+.wordle-result.lose {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bouton continuer */
+.bsod-continue {
+  margin-top: 15px;
+  padding: 12px 30px;
+  background: white;
+  color: #0078d7;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  transition: transform 0.2s ease;
+}
+
+.bsod-continue.show {
+  display: inline-block;
+}
+
+.bsod-continue:hover {
+  transform: scale(1.05);
+}

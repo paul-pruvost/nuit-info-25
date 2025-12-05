@@ -1,0 +1,404 @@
+/**
+ * NIRD Decryption Styles - Footer Version
+ * Système de décryptage de l'acronyme NIRD
+ */
+
+/* Footer fixe en bas */
+.nird-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0d0d1a 100%);
+  border-top: 2px solid #4a90d9;
+  box-shadow: 0 -5px 30px rgba(74, 144, 217, 0.3);
+  z-index: 1000;
+  padding: 10px 20px;
+}
+
+.nird-footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nird-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nird-footer-title {
+  color: #4a90d9;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.nird-footer-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 400px;
+}
+
+.nird-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nird-info-row {
+  display: flex;
+  gap: 15px;
+  font-size: 0.75rem;
+}
+
+.nird-footer-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Emplacements des lettres - version compacte */
+#nird-slots {
+  display: flex;
+  gap: 8px;
+}
+
+.nird-slot {
+  position: relative;
+  width: 45px;
+  height: 55px;
+  background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 100%);
+  border: 2px solid #2d4a6f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nird-slot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 15px rgba(74, 144, 217, 0.4);
+}
+
+.nird-slot.unlocked {
+  border-color: #4ade80;
+  background: linear-gradient(180deg, #0d2818 0%, #1a3d2a 100%);
+}
+
+.nird-slot.unlocked:hover .nird-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Lettres */
+.nird-letter {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  transition: all 0.1s ease;
+}
+
+.nird-letter.locked {
+  color: #4a5568;
+  text-shadow: 0 0 10px rgba(74, 85, 104, 0.5);
+}
+
+.nird-letter.unlocked {
+  color: #4ade80;
+  text-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+}
+
+.nird-letter.spinning {
+  animation: nird-glow 0.1s ease-in-out infinite alternate;
+  color: #fbbf24;
+}
+
+.nird-letter.reveal {
+  animation: nird-reveal 0.8s ease-out;
+}
+
+.nird-letter.shake {
+  animation: nird-shake 0.5s ease-out;
+}
+
+/* Infobulle - apparait vers le haut */
+.nird-tooltip {
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 280px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+  border: 2px solid #4ade80;
+  border-radius: 12px;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nird-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: #4ade80 transparent transparent transparent;
+}
+
+.nird-tooltip.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nird-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.nird-tooltip-icon {
+  font-size: 1.5rem;
+}
+
+.nird-tooltip-word {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4ade80;
+}
+
+.nird-tooltip-desc {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Contrôles compacts */
+.nird-input-label {
+  color: #888;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+#nird-points-input {
+  width: 80px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  background: #0d1b2a;
+  border: 2px solid #2d4a6f;
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+}
+
+#nird-points-input:focus {
+  outline: none;
+  border-color: #4a90d9;
+  box-shadow: 0 0 10px rgba(74, 144, 217, 0.3);
+}
+
+#nird-points-slider {
+  width: 120px;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(90deg, #2d4a6f 0%, #4a90d9 100%);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#nird-points-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #4a90d9;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(74, 144, 217, 0.5);
+  transition: transform 0.2s ease;
+}
+
+#nird-points-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Infos compactes */
+#nird-cost {
+  color: #888;
+}
+
+#nird-chance {
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+#nird-status {
+  color: #4ade80;
+}
+
+/* Bouton de tentative compact */
+#nird-attempt-btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #4a90d9 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+#nird-attempt-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(74, 144, 217, 0.5);
+}
+
+#nird-attempt-btn:disabled {
+  background: #4a5568;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Status complet */
+.nird-complete {
+  color: #4ade80 !important;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes nird-glow {
+  from {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  to {
+    text-shadow: 0 0 25px rgba(251, 191, 36, 1);
+  }
+}
+
+@keyframes nird-reveal {
+  0% {
+    transform: scale(1);
+    color: #fbbf24;
+  }
+  50% {
+    transform: scale(1.5);
+    color: #fff;
+    text-shadow: 0 0 30px #fff;
+  }
+  100% {
+    transform: scale(1);
+    color: #4ade80;
+  }
+}
+
+@keyframes nird-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+/* Espace pour le footer dans le body */
+body {
+  padding-bottom: 90px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .nird-footer {
+    padding: 8px 10px;
+  }
+  
+  .nird-footer-content {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .nird-footer-left {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .nird-footer-center {
+    width: 100%;
+    max-width: none;
+    order: 3;
+  }
+  
+  .nird-slot {
+    width: 40px;
+    height: 48px;
+  }
+  
+  .nird-letter {
+    font-size: 1.5rem;
+  }
+  
+  .nird-tooltip {
+    width: 220px;
+    left: 0;
+    transform: translateX(0) translateY(10px);
+  }
+  
+  .nird-tooltip.show,
+  .nird-slot.unlocked:hover .nird-tooltip {
+    transform: translateX(0) translateY(0);
+  }
+  
+  #nird-points-slider {
+    width: 100px;
+  }
+  
+  body {
+    padding-bottom: 130px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nird-footer-title {
+    font-size: 0.85rem;
+  }
+  
+  .nird-slot {
+    width: 35px;
+    height: 42px;
+  }
+  
+  .nird-letter {
+    font-size: 1.3rem;
+  }
+  
+  #nird-attempt-btn {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .nird-info-row {
+    font-size: 0.7rem;
+  }
+  
+  body {
+    padding-bottom: 140px;
+  }
+}

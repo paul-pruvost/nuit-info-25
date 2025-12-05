@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NIRD Clicker - Un jeu éducatif sur le Numérique Inclusif, Responsable et Durable" />
+  <meta name="theme-color" content="#141721" />
+  <title>Village Numérique Résistant - NIRD Clicker</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components/button.css">
+  <link rel="stylesheet" href="css/components/shop.css">
+  <link rel="stylesheet" href="css/components/challenges.css">
+  <link rel="stylesheet" href="css/components/tabs.css">
+  <link rel="stylesheet" href="css/components/notifications.css">
+  <link rel="stylesheet" href="css/components/events.css">
+  <link rel="stylesheet" href="css/components/modals.css">
+  <link rel="stylesheet" href="css/components/computer-art.css">
+  <link rel="stylesheet" href="css/components/blackout.css">
+  <link rel="stylesheet" href="css/components/bsod.css">
+  <link rel="stylesheet" href="css/components/nird.css">
+  <link rel="stylesheet" href="css/components/tutorial.css">
+</head>
+<body>
+  <div class="app">
+    <div class="left">
+      <header>
+        <div class="title">Village Numérique Résistant</div>
+        <div class="subtitle">
+          Clique pour <strong>libérer des postes</strong> et achète des actions
+          NIRD (Linux, réemploi, ateliers…) pour faire grandir la résistance numérique.
+        </div>
+      </header>
+
+      <section class="counters">
+        <div class="counter-main">
+          Postes libérés : <span id="points">0</span>
+        </div>
+        <div class="counter-secondary">
+          Production : <span id="pps">0</span> postes / seconde
+        </div>
+      </section>
+
+      <button id="clickButton" class="big-button" data-level="0">
+        <div class="computer-art" id="computerArt"></div>
+      </button>
+    </div>
+
+    <div class="right">
+      <div class="tabs">
+        <button class="tab active" data-tab="shop">🛒 Boutique</button>
+        <button class="tab" data-tab="challenges">🏆 Défis</button>
+      </div>
+
+      <div id="tab-shop" class="tab-content active">
+        <div class="shop-title">
+          Boutique d'actions NIRD
+          <span>Investis tes postes libérés dans des actions qui produisent en continu.</span>
+        </div>
+        <div id="shop" class="shop"></div>
+      </div>
+
+      <div id="tab-challenges" class="tab-content">
+        <div class="shop-title">
+          Défis NIRD
+          <span>Complète des défis pour prouver ton engagement !</span>
+        </div>
+        <div id="challenges" class="challenges"></div>
+      </div>
+
+      <div class="footer">
+        <div>Astuce : concentre-toi sur quelques actions au début, puis diversifie pour
+        construire un <strong>écosystème libre</strong> solide dans ton établissement.</div>
+        <div class="footer-buttons">
+          <button class="stats-btn" onclick="showStats()">📊 Stats</button>
+          <button class="reset-btn" onclick="resetGame()">🗑️ Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/config/upgrades.js"></script>
+  <script src="js/config/challenges.js"></script>
+  <script src="js/config/events.js"></script>
+  <script src="js/config/quiz.js"></script>
+  <script src="js/config/bsod-words.js"></script>
+  <script src="js/config/computer-levels.js"></script>
+  <script src="js/config/nird.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/computer-art.js"></script>
+  <script src="js/modules/shop.js"></script>
+  <script src="js/modules/challenges.js"></script>
+  <script src="js/modules/save.js"></script>
+  <script src="js/modules/events.js"></script>
+  <script src="js/modules/blackout.js"></script>
+  <script src="js/modules/bsod.js"></script>
+  <script src="js/modules/quiz.js"></script>
+  <script src="js/modules/stats.js"></script>
+  <script src="js/modules/cheat.js"></script>
+  <script src="js/modules/nird.js"></script>
+  <script src="js/modules/tutorial.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Footer NIRD Décryptage -->
+  <footer class="nird-footer">
+    <div class="nird-footer-content">
+      <div class="nird-footer-left">
+        <span class="nird-footer-title">🔐 Décrypte NIRD</span>
+        <div id="nird-slots"></div>
+      </div>
+      
+      <div class="nird-footer-center">
+        <div class="nird-input-row">
+          <label class="nird-input-label">Investir :</label>
+          <input type="number" id="nird-points-input" value="100" min="0" max="0">
+          <input type="range" id="nird-points-slider" value="100" min="0" max="0">
+        </div>
+        <div class="nird-info-row">
+          <span id="nird-cost">Min: 100</span>
+          <span id="nird-chance">Chance: 5%</span>
+          <span id="nird-status">0/4</span>
+        </div>
+      </div>
+      
+      <div class="nird-footer-right">
+        <button id="nird-attempt-btn" disabled>🎰 Décrypter</button>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

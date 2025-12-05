@@ -1,0 +1,263 @@
+/**
+ * Tutorial Styles
+ * NIRD Clicker Game - Introduction Tutorial
+ */
+
+/* Overlay sombre */
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tutorial-overlay.show {
+  opacity: 1;
+}
+
+.tutorial-overlay.hiding {
+  opacity: 0;
+}
+
+/* Container du tutoriel */
+.tutorial-container {
+  max-width: 600px;
+  width: 90%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #4a90d9;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 50px rgba(74, 144, 217, 0.4);
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
+}
+
+.tutorial-overlay.show .tutorial-container {
+  transform: scale(1);
+}
+
+/* Header du tutoriel */
+.tutorial-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.tutorial-logo {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: tutorialFloat 3s ease-in-out infinite;
+}
+
+@keyframes tutorialFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.tutorial-title {
+  font-size: 1.8rem;
+  color: #4a90d9;
+  margin-bottom: 5px;
+}
+
+.tutorial-subtitle {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* Étapes du tutoriel */
+.tutorial-steps {
+  display: none;
+}
+
+.tutorial-steps.active {
+  display: block;
+  animation: tutorialFadeIn 0.4s ease;
+}
+
+@keyframes tutorialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tutorial-step {
+  margin-bottom: 20px;
+}
+
+.tutorial-step-icon {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.tutorial-step-title {
+  font-size: 1.3rem;
+  color: #4ade80;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tutorial-step-text {
+  color: #ccc;
+  line-height: 1.7;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.tutorial-step-text strong {
+  color: #fbbf24;
+}
+
+.tutorial-step-text .highlight {
+  color: #4a90d9;
+  font-weight: bold;
+}
+
+/* Indicateurs de progression */
+.tutorial-progress {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.tutorial-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2d4a6f;
+  transition: all 0.3s ease;
+}
+
+.tutorial-dot.active {
+  background: #4a90d9;
+  transform: scale(1.2);
+}
+
+.tutorial-dot.completed {
+  background: #4ade80;
+}
+
+/* Boutons de navigation */
+.tutorial-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tutorial-btn {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tutorial-btn-skip {
+  background: transparent;
+  color: #666;
+  border: 1px solid #666;
+}
+
+.tutorial-btn-skip:hover {
+  color: #888;
+  border-color: #888;
+}
+
+.tutorial-btn-next {
+  background: linear-gradient(135deg, #4a90d9 0%, #2563eb 100%);
+  color: white;
+}
+
+.tutorial-btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(74, 144, 217, 0.5);
+}
+
+.tutorial-btn-start {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: #0d1b2a;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+}
+
+.tutorial-btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(74, 222, 128, 0.5);
+}
+
+/* Animation pour l'icône NIRD */
+.tutorial-nird-preview {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tutorial-nird-letter {
+  width: 50px;
+  height: 60px;
+  background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 100%);
+  border: 2px solid #2d4a6f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  color: #4a5568;
+}
+
+.tutorial-nird-letter.revealed {
+  border-color: #4ade80;
+  color: #4ade80;
+  background: linear-gradient(180deg, #0d2818 0%, #1a3d2a 100%);
+  animation: tutorialReveal 0.5s ease;
+}
+
+@keyframes tutorialReveal {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #fff; }
+  100% { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .tutorial-container {
+    padding: 20px;
+  }
+  
+  .tutorial-logo {
+    font-size: 3rem;
+  }
+  
+  .tutorial-title {
+    font-size: 1.4rem;
+  }
+  
+  .tutorial-step-text {
+    font-size: 0.9rem;
+  }
+  
+  .tutorial-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

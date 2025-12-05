@@ -1,0 +1,82 @@
+/**
+ * Random Events Styles
+ * NIRD Clicker Game
+ */
+
+.random-event {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.1s ease;
+  animation: eventPulse 1s ease-in-out infinite;
+}
+
+.random-event:hover {
+  transform: scale(1.15);
+}
+
+.random-event.flying {
+  background: radial-gradient(circle at 30% 20%, #fbbf24 0, #d97706 60%, #92400e 100%);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.random-event.waiting {
+  background: radial-gradient(circle at 30% 20%, #60a5fa 0, #2563eb 60%, #1e40af 100%);
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: eventBounce 0.6s ease-in-out infinite;
+}
+
+.random-event.clicked {
+  animation: eventClick 0.2s ease-out forwards;
+}
+
+.event-icon {
+  font-size: 1.8rem;
+  pointer-events: none;
+}
+
+/* Quiz Event - Orange Bubble */
+.random-event.quiz-bubble {
+  background: radial-gradient(circle at 30% 20%, #fb923c 0, #ea580c 60%, #9a3412 100%);
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.7), 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: quizPulse 0.8s ease-in-out infinite;
+  width: 64px;
+  height: 64px;
+}
+
+.random-event.quiz-bubble:hover {
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes eventPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.9), 0 4px 12px rgba(0, 0, 0, 0.4); }
+}
+
+@keyframes eventBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes eventClick {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes quizPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.7), 0 4px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 35px rgba(251, 146, 60, 1), 0 4px 16px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+  }
+}

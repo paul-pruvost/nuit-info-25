@@ -1,0 +1,76 @@
+/**
+ * Challenges/Achievements Styles
+ * NIRD Clicker Game
+ */
+
+.challenges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.challenge {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(19, 24, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.2s ease;
+}
+
+.challenge.completed {
+  background: rgba(16, 42, 24, 0.8);
+  border-color: rgba(126, 231, 135, 0.3);
+}
+
+.challenge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: radial-gradient(circle at 30% 20%, #37474f 0, #101921 70%);
+  flex-shrink: 0;
+}
+
+.challenge.completed .challenge-icon {
+  background: radial-gradient(circle at 30% 20%, #2e7d32 0, #1b5e20 70%);
+}
+
+.challenge-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.challenge-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.challenge.completed .challenge-name {
+  color: #7ee787;
+}
+
+.challenge-desc {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.challenge-reward {
+  font-size: 0.7rem;
+  color: #fbbf24;
+  margin-top: 2px;
+}
+
+.challenge.completed .challenge-reward {
+  color: #7ee787;
+}
