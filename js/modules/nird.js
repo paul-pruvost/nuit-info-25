@@ -250,7 +250,7 @@ const NirdModule = {
             // Vérifier si tout est débloqué
             if (this.isFullyUnlocked()) {
               setTimeout(() => {
-                showNotification('🏆 NIRD complet ! Tu maîtrises le Numérique Inclusif Responsable et Durable !', 'success');
+                this.showCompletionModal();
               }, 1000);
             }
           } else {
@@ -326,6 +326,80 @@ const NirdModule = {
       if (parseInt(input.value) > maxPoints) {
         input.value = maxPoints;
       }
+    }
+  },
+  
+  /**
+   * Affiche le modal de fin avec le récapitulatif complet de NIRD
+   */
+  showCompletionModal() {
+    const letters = NIRD_CONFIG.letters;
+    
+    const modalHtml = `
+      <div class="nird-completion-modal">
+        <div class="nird-completion-content">
+          <div class="nird-completion-confetti"></div>
+          <h2 class="nird-completion-title">🎉 Félicitations ! 🎉</h2>
+          <p class="nird-completion-subtitle">Tu as décrypté l'acronyme <strong>NIRD</strong> !</p>
+          
+          <div class="nird-completion-summary">
+            ${letters.map(l => `
+              <div class="nird-completion-letter">
+                <div class="nird-completion-letter-header">
+                  <span class="nird-completion-letter-icon">${l.icon}</span>
+                  <span class="nird-completion-letter-char">${l.letter}</span>
+                  <span class="nird-completion-letter-word">= ${l.word}</span>
+                </div>
+                <p class="nird-completion-letter-desc">${l.description}</p>
+              </div>
+            `).join('')}
+          </div>
+          
+          <div class="nird-completion-message">
+            <p>🌍 <strong>Le Numérique Inclusif, Responsable et Durable</strong> est une approche qui vise à concilier innovation technologique et respect des enjeux sociaux et environnementaux.</p>
+            <p>En adoptant ces principes, nous pouvons construire un avenir numérique plus équitable et plus respectueux de notre planète ! 🌱</p>
+          </div>
+          
+          <button class="nird-completion-close" onclick="NirdModule.closeCompletionModal()">Continuer à jouer</button>
+        </div>
+      </div>
+    `;
+    
+    const modal = document.createElement('div');
+    modal.id = 'nird-completion-modal-container';
+    modal.innerHTML = modalHtml;
+    document.body.appendChild(modal);
+    
+    // Lancer l'animation de confettis
+    this.launchConfetti();
+  },
+  
+  /**
+   * Ferme le modal de fin
+   */
+  closeCompletionModal() {
+    const modal = document.getElementById('nird-completion-modal-container');
+    if (modal) modal.remove();
+  },
+  
+  /**
+   * Lance les confettis pour célébrer la victoire
+   */
+  launchConfetti() {
+    const container = document.querySelector('.nird-completion-confetti');
+    if (!container) return;
+    
+    const colors = ['#4ade80', '#4a90d9', '#fbbf24', '#f87171', '#a78bfa', '#34d399'];
+    const confettiCount = 100;
+    
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti-piece';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      container.appendChild(confetti);
     }
   }
 };
