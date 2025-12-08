@@ -20,6 +20,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.15s ease;
+  position: relative;
 }
 
 .tab:hover {
@@ -32,10 +33,51 @@
   color: #7ee787;
 }
 
+.tab.hidden {
+  display: none;
+}
+
 .tab-content {
   display: none;
 }
 
 .tab-content.active {
   display: block;
+}
+
+/* Animation d'apparition de l'onglet Trading */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Badge "Nouveau" pour l'onglet débloqué */
+.tab.newly-unlocked::after {
+  content: "NEW";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }

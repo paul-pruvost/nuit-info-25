@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="css/components/bsod.css">
   <link rel="stylesheet" href="css/components/nird.css">
   <link rel="stylesheet" href="css/components/tutorial.css">
+  <link rel="stylesheet" href="css/components/trading.css">
+  <link rel="stylesheet" href="css/components/casino.css">
 </head>
 <body>
   <div class="app">
@@ -52,6 +54,8 @@
       <div class="tabs">
         <button class="tab active" data-tab="shop">🛒 Boutique</button>
         <button class="tab" data-tab="challenges">🏆 Défis</button>
+        <button class="tab hidden" data-tab="trading" id="trading-tab">💹 Trading</button>
+        <button class="tab hidden" data-tab="casino" id="casino-tab">🎰 Casino</button>
       </div>
 
       <div id="tab-shop" class="tab-content active">
@@ -68,6 +72,253 @@
           <span>Complète des défis pour prouver ton engagement !</span>
         </div>
         <div id="challenges" class="challenges"></div>
+      </div>
+
+      <div id="tab-trading" class="tab-content">
+        <div class="trading-container" id="trading-container">
+          <div class="trading-header">
+            <div class="trading-status" id="trading-status">💹 Marché des Postes</div>
+            <div class="trading-market-value" id="trading-current-value">100.0</div>
+          </div>
+
+          <div class="trading-chart-section">
+            <div class="trading-chart-title">
+              <span>📊 Évolution du marché</span>
+              <div class="trading-chart-legend">
+                <div class="trading-legend-item">
+                  <div class="trading-legend-dot" style="background: #10b981;"></div>
+                  <span>Hausse</span>
+                </div>
+                <div class="trading-legend-item">
+                  <div class="trading-legend-dot" style="background: #ef4444;"></div>
+                  <span>Baisse</span>
+                </div>
+              </div>
+            </div>
+            <div class="trading-chart-wrapper">
+              <canvas id="trading-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="trading-controls">
+            <div class="trading-controls-grid">
+              <div class="trading-info-card">
+                <div class="trading-info-label">💰 Postes investis</div>
+                <div class="trading-info-value" id="trading-invested-amount">0</div>
+              </div>
+              <div class="trading-info-card">
+                <div class="trading-info-label">🎯 Retour potentiel</div>
+                <div class="trading-info-value" id="trading-potential-return">0 - 0</div>
+              </div>
+            </div>
+
+            <div class="trading-invest-form">
+              <div class="trading-invest-title">💵 Investir vos postes</div>
+              
+              <div class="trading-input-group">
+                <div class="trading-input-row">
+                  <span class="trading-input-label">Montant :</span>
+                  <input type="number" id="trading-invest-input" class="trading-input" 
+                         value="100" min="50" max="10000" step="10">
+                </div>
+                <div class="trading-input-row">
+                  <span class="trading-input-label"></span>
+                  <input type="range" id="trading-invest-slider" class="trading-slider" 
+                         value="100" min="50" max="10000" step="10">
+                </div>
+              </div>
+
+              <div class="trading-progress-container" style="display: none;">
+                <div class="trading-progress-bar-bg">
+                  <div class="trading-progress-bar" id="trading-progress"></div>
+                </div>
+                <div class="trading-progress-text">Trading en cours...</div>
+              </div>
+
+              <button id="trading-invest-btn" class="trading-invest-btn">
+                🎰 Investir maintenant
+              </button>
+            </div>
+
+            <div class="trading-description">
+              <div class="trading-description-title">ℹ️ Comment fonctionne le trading ?</div>
+              <div class="trading-description-text">
+                Investissez vos postes libérés sur le marché pour tenter de les multiplier ! 
+                Le marché est volatile : vous pouvez tout perdre ou tripler votre mise. 
+                Chaque trade dure 15 secondes.
+              </div>
+              <div class="trading-probabilities">
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">💥 Crash total</span>
+                  <span class="trading-probability-value">30%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">📉 Perte -50%</span>
+                  <span class="trading-probability-value">15%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">📊 Perte -20%</span>
+                  <span class="trading-probability-value">15%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">➖ Neutre</span>
+                  <span class="trading-probability-value">15%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">📈 Gain +20%</span>
+                  <span class="trading-probability-value">10%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">🚀 Gain +50%</span>
+                  <span class="trading-probability-value">8%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">💰 Double x2</span>
+                  <span class="trading-probability-value">5%</span>
+                </div>
+                <div class="trading-probability-item">
+                  <span class="trading-probability-label">🎰 Triple x3</span>
+                  <span class="trading-probability-value">2%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-casino" class="tab-content">
+        <div class="casino-container">
+          <div class="casino-header">
+            <div class="casino-title">🎰 Casino NIRD</div>
+            <div class="casino-stats">
+              <div class="casino-stat">
+                <div class="casino-stat-label">Parties jouées</div>
+                <div class="casino-stat-value" id="casino-plays">0</div>
+              </div>
+              <div class="casino-stat">
+                <div class="casino-stat-label">Victoires</div>
+                <div class="casino-stat-value" id="casino-wins">0</div>
+              </div>
+              <div class="casino-stat">
+                <div class="casino-stat-label">Profit total</div>
+                <div class="casino-stat-value" id="casino-profit">0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="casino-game-selector-section">
+            <select id="casino-game-selector" class="casino-game-selector">
+              <option value="slots">🎰 Machine à sous NIRD</option>
+              <option value="dice">🎲 Dés du NIRD</option>
+              <option value="blackjack">🃏 Blackjack NIRD</option>
+              <option value="wheel">🎯 Roue de la Fortune</option>
+            </select>
+          </div>
+
+          <div class="casino-game-area">
+            <!-- 🎰 Machine à sous -->
+            <div id="casino-slots" class="slots-container">
+              <div class="casino-game-description">
+                Alignez 3 symboles identiques pour gagner! Jackpot x100 avec 3 🐧 Tux!
+              </div>
+              <div class="slots-reels">
+                <div class="slot-reel" id="slot-reel-1">🐧</div>
+                <div class="slot-reel" id="slot-reel-2">♻️</div>
+                <div class="slot-reel" id="slot-reel-3">🔓</div>
+              </div>
+              <div class="slots-payouts">
+                <strong>Gains possibles:</strong>
+                <div class="slots-payouts-grid">
+                  <div class="slot-payout-item">🐧🐧🐧 x100</div>
+                  <div class="slot-payout-item">♻️♻️♻️ x5</div>
+                  <div class="slot-payout-item">🔓🔓🔓 x4</div>
+                  <div class="slot-payout-item">🌱🌱🌱 x3</div>
+                  <div class="slot-payout-item">💚💚💚 x2</div>
+                  <div class="slot-payout-item">⚡⚡⚡ x1.5</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🎲 Dés -->
+            <div id="casino-dice" class="dice-container" style="display: none;">
+              <div class="casino-game-description">
+                Lancez les dés! 7 ou 11 = x2, doubles = x3, 2 ou 12 = x5
+              </div>
+              <div class="dice-display">
+                <div class="die" id="dice-1">6</div>
+                <div class="die" id="dice-2">6</div>
+              </div>
+              <div class="dice-result">
+                Total: <span id="dice-result">12</span>
+              </div>
+              <div class="dice-payouts">
+                <strong>Gains:</strong>
+                <ul style="margin: 8px 0 0 20px;">
+                  <li>Doubles (même nombre): x3</li>
+                  <li>2 (Snake eyes) ou 12 (Boxcars): x5</li>
+                  <li>7 ou 11: x2</li>
+                  <li>Autres: Perdu</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 🃏 Blackjack -->
+            <div id="casino-blackjack" class="blackjack-container" style="display: none;">
+              <div class="casino-game-description">
+                Approchez-vous de 21 sans dépasser. Battez le croupier!
+              </div>
+              <div class="blackjack-table">
+                <div class="blackjack-hand">
+                  <div class="blackjack-hand-title">🎩 Croupier</div>
+                  <div class="blackjack-cards" id="blackjack-dealer-cards">🂠 🂠</div>
+                  <div class="blackjack-score">Score: <span id="blackjack-dealer-score">?</span></div>
+                </div>
+                <div class="blackjack-hand">
+                  <div class="blackjack-hand-title">👤 Vous</div>
+                  <div class="blackjack-cards" id="blackjack-player-cards">🂠 🂠</div>
+                  <div class="blackjack-score">Score: <span id="blackjack-player-score">0</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🎯 Roue de la Fortune -->
+            <div id="casino-wheel" class="wheel-container" style="display: none;">
+              <div class="casino-game-description">
+                Faites tourner la roue et tentez de gagner jusqu'à x10!
+              </div>
+              <div class="wheel-display">
+                <div class="wheel-pointer"></div>
+                <div class="wheel-spinner" id="wheel-spinner">
+                  <div class="wheel-center">🎯</div>
+                </div>
+              </div>
+              <div class="wheel-result" id="wheel-result">Prêt à jouer!</div>
+            </div>
+          </div>
+
+          <div class="casino-bet-controls">
+            <div class="casino-bet-form">
+              <div class="casino-bet-title">💰 Placez votre mise</div>
+              
+              <div class="casino-input-group">
+                <div class="casino-input-row">
+                  <span class="casino-input-label">Mise:</span>
+                  <input type="number" id="casino-bet-input" class="casino-input" 
+                         value="100" min="10" max="5000" step="10">
+                </div>
+                <div class="casino-input-row">
+                  <span class="casino-input-label"></span>
+                  <input type="range" id="casino-bet-slider" class="casino-slider" 
+                         value="100" min="10" max="5000" step="10">
+                </div>
+              </div>
+
+              <button id="casino-play-btn" class="casino-play-btn">
+                🎲 Jouer maintenant
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="footer">
@@ -89,6 +340,8 @@
   <script src="js/config/bsod-words.js"></script>
   <script src="js/config/computer-levels.js"></script>
   <script src="js/config/nird.js"></script>
+  <script src="js/config/trading.js"></script>
+  <script src="js/config/casino.js"></script>
   <script src="js/state.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/modules/computer-art.js"></script>
@@ -103,6 +356,8 @@
   <script src="js/modules/cheat.js"></script>
   <script src="js/modules/nird.js"></script>
   <script src="js/modules/tutorial.js"></script>
+  <script src="js/modules/trading.js"></script>
+  <script src="js/modules/casino.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/main.js"></script>
 

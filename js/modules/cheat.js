@@ -228,6 +228,57 @@ const cheat = {
   },
   
   /**
+   * Débloquer le trading
+   */
+  unlockTrading: function() {
+    state.totalPointsEarned = TRADING_CONFIG.unlockRequirement;
+    TradingModule.checkUnlock();
+    updateUI();
+    console.log("✅ Trading débloqué");
+  },
+  
+  /**
+   * Réafficher le tutoriel du trading
+   */
+  showTradingTutorial: function() {
+    localStorage.removeItem('nird-trading-tutorial-completed');
+    TradingModule.showTutorial();
+    console.log("✅ Tutoriel Trading affiché");
+  },
+  
+  /**
+   * Débloquer le casino
+   */
+  unlockCasino: function() {
+    state.totalPointsEarned = CASINO_CONFIG.unlockRequirement;
+    CasinoModule.checkUnlock();
+    updateUI();
+    console.log("✅ Casino débloqué");
+  },
+  
+  /**
+   * Réafficher le tutoriel du casino
+   */
+  showCasinoTutorial: function() {
+    localStorage.removeItem('nird-casino-tutorial-completed');
+    CasinoModule.showTutorial();
+    console.log("✅ Tutoriel Casino affiché");
+  },
+  
+  /**
+   * Réinitialiser complètement le jeu
+   */
+  reset: function() {
+    if (confirm("⚠️ Réinitialiser complètement le jeu ? (via console)")) {
+      localStorage.removeItem('nird-clicker-save');
+      localStorage.removeItem('nird-tutorial-completed');
+      localStorage.removeItem('nird-trading-tutorial-completed');
+      location.reload();
+      console.log("✅ Jeu réinitialisé");
+    }
+  },
+  
+  /**
    * Afficher l'aide des commandes
    */
   help: function() {
@@ -249,6 +300,11 @@ cheat.unlockNird(i)     - Débloquer lettre NIRD (0-3) ou suivante
 cheat.unlockAllNird()   - Débloquer toutes les lettres NIRD
 cheat.resetNird()       - Réinitialiser les lettres NIRD
 cheat.showTutorial()    - Réafficher le tutoriel d'intro
+cheat.unlockTrading()   - Débloquer le trading
+cheat.showTradingTutorial() - Réafficher le tutoriel du trading
+cheat.unlockCasino()    - Débloquer le casino
+cheat.showCasinoTutorial() - Réafficher le tutoriel du casino
+cheat.reset()           - Réinitialiser complètement le jeu
 cheat.help()            - Afficher cette aide
     `);
   }

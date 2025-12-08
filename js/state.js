@@ -17,5 +17,15 @@ const state = {
   upgrades: UPGRADES_CONFIG.map(u => ({ ...u })),
   challenges: CHALLENGES_CONFIG.map(c => ({ ...c })),
   eventTypes: EVENTS_CONFIG,
-  quizQuestions: QUIZ_CONFIG
+  quizQuestions: QUIZ_CONFIG,
+  // Trading
+  tradingUnlocked: false,
+  totalTrades: 0,
+  successfulTrades: 0,
+  tradingProfit: 0,
+  // Casino
+  casinoUnlocked: false,
+  casinoPlays: 0,
+  casinoWins: 0,
+  casinoProfit: 0
 };

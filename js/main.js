@@ -58,6 +58,12 @@ function initGame() {
   // Initialize NIRD decryption module
   NirdModule.init();
   
+  // Initialize Trading module
+  TradingModule.init();
+  
+  // Initialize Casino module
+  CasinoModule.init();
+  
   // Show tutorial for new players
   TutorialModule.init();
   

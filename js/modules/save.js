@@ -20,6 +20,16 @@ function saveGame() {
     nirdUnlocked: state.nirdUnlocked,
     upgrades: state.upgrades.map(u => ({ id: u.id, count: u.count })),
     challenges: state.challenges.map(c => ({ id: c.id, completed: c.completed })),
+    // Trading stats
+    tradingUnlocked: state.tradingUnlocked,
+    totalTrades: state.totalTrades,
+    successfulTrades: state.successfulTrades,
+    tradingProfit: state.tradingProfit,
+    // Casino stats
+    casinoUnlocked: state.casinoUnlocked,
+    casinoPlays: state.casinoPlays,
+    casinoWins: state.casinoWins,
+    casinoProfit: state.casinoProfit,
     savedAt: Date.now()
   };
   localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
@@ -44,6 +54,18 @@ function loadGame() {
     state.productionMultiplier = saveData.productionMultiplier || 1;
     state.eventsClicked = saveData.eventsClicked || 0;
     state.nirdUnlocked = saveData.nirdUnlocked || [false, false, false, false];
+    
+    // Restaurer les stats de trading
+    state.tradingUnlocked = saveData.tradingUnlocked || false;
+    state.totalTrades = saveData.totalTrades || 0;
+    state.successfulTrades = saveData.successfulTrades || 0;
+    state.tradingProfit = saveData.tradingProfit || 0;
+    
+    // Restaurer les stats de casino
+    state.casinoUnlocked = saveData.casinoUnlocked || false;
+    state.casinoPlays = saveData.casinoPlays || 0;
+    state.casinoWins = saveData.casinoWins || 0;
+    state.casinoProfit = saveData.casinoProfit || 0;
     
     // Restaurer les upgrades
     if (saveData.upgrades) {
@@ -96,8 +118,11 @@ function loadGame() {
  */
 function resetGame() {
   if (confirm("Es-tu sûr de vouloir réinitialiser ta progression ? Cette action est irréversible.")) {
+    // Supprimer toutes les données du localStorage liées au jeu
     localStorage.removeItem(SAVE_KEY);
     localStorage.removeItem('nird-tutorial-completed');
+    localStorage.removeItem('nird-trading-tutorial-completed');
+    localStorage.removeItem('nird-casino-tutorial-completed');
     location.reload();
   }
 }
