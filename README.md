@@ -7,6 +7,8 @@ Léo GIARDINELLI
 Dylan LEMAIRE
 ```
 
+test
+
 [lien du dépôt](https://github.com/paul-pruvost/nuit-info-25)
 
 # NIRD Clicker - Village Numérique Résistant
